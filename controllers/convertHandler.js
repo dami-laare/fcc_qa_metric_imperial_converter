@@ -171,7 +171,7 @@ function ConvertHandler() {
   ) {
     let result;
 
-    result = `${initNum} ${initUnitString} converts to ${returnNum} ${returnUnitString} `;
+    result = `${initNum} ${initUnitString} converts to ${returnNum} ${returnUnitString}`;
     return result;
   };
 }

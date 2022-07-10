@@ -163,15 +163,18 @@ function ConvertHandler() {
     }
   };
 
-  this.getString = function (initNum, initUnit, returnNum, returnUnit) {
+  this.getString = function (
+    initNum,
+    initUnitString,
+    returnNum,
+    returnUnitString
+  ) {
     let result;
 
     result = `${initNum} ${
-      initNum !== 1 ? `${units[initUnit].full}s` : units[initUnit].full
+      initNum !== 1 ? `${initUnitString}s` : initUnitString
     } converts to ${returnNum} ${
-      returnNum !== 1
-        ? `${units[units[initUnit].return].full}s`
-        : units[units[initUnit].return].full
+      returnNum !== 1 ? `${returnUnitString}s` : returnUnitString
     } `;
     return result;
   };

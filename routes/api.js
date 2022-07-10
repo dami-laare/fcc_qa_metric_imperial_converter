@@ -18,14 +18,15 @@ module.exports = function (app) {
     if (!initNum || !initUnit) {
       return res.status(200).send(`invalid ${!initNum ? "number" : "unit"}`);
     }
-    const speltUnit = convertHandler.spellOutUnit(initUnit);
+    const initUnitString = convertHandler.spellOutUnit(initUnit);
     const returnUnit = convertHandler.getReturnUnit(initUnit);
+    const returnUnitString = convertHandler.spellOutUnit(returnUnit);
     const returnNum = convertHandler.convert(initNum, initUnit);
     const string = convertHandler.getString(
       initNum,
-      initUnit,
+      initUnitString,
       returnNum,
-      returnUnit
+      returnUnitString
     );
 
     res.status(200).json({

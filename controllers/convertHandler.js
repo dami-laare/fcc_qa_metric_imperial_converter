@@ -33,7 +33,11 @@ function ConvertHandler() {
     if (/[0-9]/.test(input.slice(input.search(/[a-zA-Z]/), input.length))) {
       return false;
     }
+
     if (result.indexOf("/") > 0) {
+      if (result.match(/\//g).length > 1) {
+        return false;
+      }
       const arr = result.split("/");
       if (!/\d/.test(arr[1])) {
         return false;

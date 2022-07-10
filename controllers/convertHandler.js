@@ -20,8 +20,12 @@ function ConvertHandler() {
   this.getNum = function (input) {
     let result;
 
-    if (/[a-zA-Z]/.test(input[0])) {
+    if (/[a-zA-Z]/.test(input[0]) && /[0-9]/.test(input)) {
       return false;
+    }
+
+    if (/[a-zA-Z]/.test(input[0]) && !/[0-9]/.test(input)) {
+      return 1;
     }
 
     result = input.slice(0, input.search(/[a-zA-Z]/));

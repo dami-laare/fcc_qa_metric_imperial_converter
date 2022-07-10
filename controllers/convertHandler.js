@@ -7,6 +7,15 @@ const units = {
   km: { full: "kilometer", return: "mi" },
 };
 
+let unitKeys = Object.keys(units);
+
+let unitsCase = {};
+
+Object.keys(units).forEach((unit, i) => {
+  unit = unit.toLowerCase();
+  unitsCase[unit] = units[unitKeys[i]];
+});
+
 function ConvertHandler() {
   this.getNum = function (input) {
     let result;
@@ -65,27 +74,57 @@ function ConvertHandler() {
         iteration++;
       }
 
-      if (Object.keys(units).indexOf(result) < 0) {
+      if (Object.keys(unitsCase).indexOf(result.toLowerCase()) < 0) {
         return false;
       }
-      return true;
+
+      if (Object.keys(units).includes(result)) {
+        return result;
+      }
+
+      if (Object.keys(units).includes(result.toUpperCase())) {
+        return result.toUpperCase();
+      }
+
+      if (Object.keys(unitsCase).includes(result.toLowerCase())) {
+        return result.toLowerCase();
+      }
     }
-    if (Object.keys(units).indexOf(result) < 0) {
+    if (Object.keys(unitsCase).indexOf(result.toLowerCase()) < 0) {
       return false;
     }
-    return result;
+    if (Object.keys(units).includes(result)) {
+      return result;
+    }
+
+    if (Object.keys(units).includes(result.toUpperCase())) {
+      return result.toUpperCase();
+    }
+
+    if (Object.keys(unitsCase).includes(result.toLowerCase())) {
+      return result.toLowerCase();
+    }
+    return true;
   };
 
   this.getReturnUnit = function (initUnit) {
     let result;
-    result = units[initUnit].return;
+
+    if (units[initUnit]) {
+      return units[initUnit].return;
+    }
+    result = unitsCase[initUnit.toLowerCase()].return;
 
     return result;
   };
 
   this.spellOutUnit = function (unit) {
     let result;
-    result = units[unit].full;
+
+    if (units[unit]) {
+      return units[unit].full;
+    }
+    result = unitsCase[unit.toLowerCase()].full;
 
     return result;
   };

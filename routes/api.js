@@ -11,6 +11,13 @@ module.exports = function (app) {
 
     const initNum = convertHandler.getNum(input);
     const initUnit = convertHandler.getUnit(input);
+    if (!initUnit && !initNum) {
+      return res.status(200).send("invalid number and unit");
+    }
+
+    if (!initNum || !initUnit) {
+      return res.status(200).send(`invalid ${!initNum ? "number" : "unit"}`);
+    }
     const speltUnit = convertHandler.spellOutUnit(initUnit);
     const returnUnit = convertHandler.getReturnUnit(initUnit);
     const returnNum = convertHandler.convert(initNum, initUnit);
@@ -20,13 +27,6 @@ module.exports = function (app) {
       returnNum,
       returnUnit
     );
-    if (!initUnit && !initNum) {
-      return res.status(200).send("invalid number and unit");
-    }
-
-    if (!initNum || !initUnit) {
-      return res.status(200).send(`invalid ${!number ? "number" : "unit"}`);
-    }
 
     res.status(200).json({
       initNum,

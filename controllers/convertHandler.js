@@ -1,10 +1,10 @@
 const units = {
-  gal: { full: "gallon", return: "L" },
-  L: { full: "liter", return: "gal" },
-  kg: { full: "kilogram", return: "lbs" },
-  lbs: { full: "pound", return: "kg" },
-  mi: { full: "mile", return: "km" },
-  km: { full: "kilometer", return: "mi" },
+  gal: { full: "gallons", return: "L" },
+  L: { full: "liters", return: "gal" },
+  kg: { full: "kilograms", return: "lbs" },
+  lbs: { full: "pounds", return: "kg" },
+  mi: { full: "miles", return: "km" },
+  km: { full: "kilometers", return: "mi" },
 };
 
 let unitKeys = Object.keys(units);
@@ -171,11 +171,7 @@ function ConvertHandler() {
   ) {
     let result;
 
-    result = `${initNum} ${
-      initNum !== 1 ? `${initUnitString}s` : initUnitString
-    } converts to ${returnNum} ${
-      returnNum !== 1 ? `${returnUnitString}s` : returnUnitString
-    } `;
+    result = `${initNum} ${initUnitString} converts to ${returnNum} ${returnUnitString} `;
     return result;
   };
 }
